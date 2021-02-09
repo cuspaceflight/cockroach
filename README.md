@@ -1,5 +1,8 @@
-# Project Cockroach
-### Redundant tracking system for HAB launches
+<p align="center">
+	<img width="150px" src="dancing_roach.gif">
+	<h1 align="center">Project Cockroach</h1>
+	<h3 align="center">Cambridge University Spaceflight</h3>
+</p>
 
 ---
 
