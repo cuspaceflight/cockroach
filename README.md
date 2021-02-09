@@ -4,8 +4,6 @@
 	<h3 align="center">Cambridge University Spaceflight</h3>
 </p>
 
----
-
 ## FAQ
 
 ### Where does the name come from?
