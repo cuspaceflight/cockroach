@@ -1,6 +1,0 @@
-[submodule "submodules/agg-kicad"]
-	path = submodules/agg-kicad
-	url = https://github.com/adamgreig/agg-kicad.git
-[submodule "submodules/CUSF-FreshersProjectLib"]
-	path = submodules/CUSF-FreshersProjectLib
-	url = https://github.com/seaney11/CUSF-FreshersProjectLib.git

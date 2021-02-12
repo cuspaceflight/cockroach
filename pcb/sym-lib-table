@@ -1,4 +1,0 @@
-(sym_lib_table
-  (lib (name agg-kicad)(type Legacy)(uri ${KIPRJMOD}/../submodules/agg-kicad/agg-kicad.lib)(options "")(descr ""))
-  (lib (name freshers-lib)(type Legacy)(uri ${KIPRJMOD}/../submodules/CUSF-FreshersProjectLib/FreshersProject.lib)(options "")(descr ""))
-)
