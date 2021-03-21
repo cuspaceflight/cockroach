@@ -13,4 +13,359 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+$Comp
+L cusf-kicad:MICROSD U1
+U 1 1 60456F91
+P 9400 2600
+F 0 "U1" H 9450 3125 50  0000 C CNN
+F 1 "MICROSD" H 9450 3034 50  0000 C CNN
+F 2 "cusf:MICROSD_MOLEX_503398-1892" H 9100 2000 50  0001 L CNN
+F 3 "" H 9000 2900 50  0001 C CNN
+F 4 "2358234" H 9100 1900 50  0001 L CNN "Farnell"
+	1    9400 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x08_Male J1
+U 1 1 60537954
+P 2850 2450
+F 0 "J1" H 2958 2931 50  0000 C CNN
+F 1 "Conn_01x08_Male" H 2958 2840 50  0000 C CNN
+F 2 "" H 2850 2450 50  0001 C CNN
+F 3 "~" H 2850 2450 50  0001 C CNN
+	1    2850 2450
+	1    0    0    -1  
+$EndComp
+Text Label 3050 2850 0    50   ~ 0
+SDA
+Text Label 3050 2750 0    50   ~ 0
+SCL
+Text Label 3050 2650 0    50   ~ 0
+TX0
+Text Label 3050 2550 0    50   ~ 0
+RX0
+Text Label 3050 2450 0    50   ~ 0
+TP
+Text Label 3050 2150 0    50   ~ 0
++3V
+Text Label 3050 2250 0    50   ~ 0
+GND
+$Comp
+L power:+3V3 #PWR?
+U 1 1 6054D03D
+P 3450 2150
+F 0 "#PWR?" H 3450 2000 50  0001 C CNN
+F 1 "+3V3" H 3465 2323 50  0000 C CNN
+F 2 "" H 3450 2150 50  0001 C CNN
+F 3 "" H 3450 2150 50  0001 C CNN
+	1    3450 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3050 2150 3450 2150
+$Comp
+L power:GND #PWR?
+U 1 1 6054DD2D
+P 3450 2250
+F 0 "#PWR?" H 3450 2000 50  0001 C CNN
+F 1 "GND" H 3455 2077 50  0000 C CNN
+F 2 "" H 3450 2250 50  0001 C CNN
+F 3 "" H 3450 2250 50  0001 C CNN
+	1    3450 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3050 2250 3450 2250
+Wire Wire Line
+	3050 2650 3350 2650
+Wire Wire Line
+	3050 2550 3350 2550
+Entry Wire Line
+	3350 2550 3450 2650
+Text Label 3450 3000 1    50   ~ 0
+UART0
+Entry Wire Line
+	5200 2100 5100 2000
+Entry Wire Line
+	5200 2200 5100 2100
+Wire Wire Line
+	5200 2100 5350 2100
+Text Label 5200 2100 0    50   ~ 0
+RX0
+Text Label 5200 2200 0    50   ~ 0
+TX0
+Wire Bus Line
+	5100 1850 3700 1850
+Wire Bus Line
+	3700 1850 3700 3050
+Wire Bus Line
+	3700 3050 3450 3050
+Wire Wire Line
+	5350 3100 5150 3100
+Wire Wire Line
+	5350 3300 5150 3300
+Wire Wire Line
+	5350 3400 5150 3400
+Entry Wire Line
+	5150 3100 5050 3200
+Entry Wire Line
+	5150 3200 5050 3300
+Entry Wire Line
+	5150 3300 5050 3400
+Entry Wire Line
+	5150 3400 5050 3500
+Text Label 5150 3100 0    50   ~ 0
+SS
+Text Label 5150 3200 0    50   ~ 0
+MOSI
+Text Label 5150 3300 0    50   ~ 0
+MISO
+Text Label 5150 3400 0    50   ~ 0
+SCK
+Text Label 8800 2800 0    50   ~ 0
+SS
+Text Label 8800 3000 0    50   ~ 0
+SCK
+Text Label 8800 2900 0    50   ~ 0
+MOSI
+Text Label 8800 2500 0    50   ~ 0
+MISO
+$Comp
+L power:GND #PWR?
+U 1 1 605589CD
+P 8700 2400
+F 0 "#PWR?" H 8700 2150 50  0001 C CNN
+F 1 "GND" H 8705 2227 50  0000 C CNN
+F 2 "" H 8700 2400 50  0001 C CNN
+F 3 "" H 8700 2400 50  0001 C CNN
+	1    8700 2400
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 60558F02
+P 8850 2300
+F 0 "#PWR?" H 8850 2150 50  0001 C CNN
+F 1 "+3V3" H 8865 2473 50  0000 C CNN
+F 2 "" H 8850 2300 50  0001 C CNN
+F 3 "" H 8850 2300 50  0001 C CNN
+	1    8850 2300
+	1    0    0    -1  
+$EndComp
+NoConn ~ 9900 2900
+NoConn ~ 9900 3000
+NoConn ~ 9000 2600
+NoConn ~ 9000 2700
+$Comp
+L power:GND #PWR?
+U 1 1 6055A3D2
+P 9900 2300
+F 0 "#PWR?" H 9900 2050 50  0001 C CNN
+F 1 "GND" H 9905 2127 50  0000 C CNN
+F 2 "" H 9900 2300 50  0001 C CNN
+F 3 "" H 9900 2300 50  0001 C CNN
+	1    9900 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9000 2300 8850 2300
+Wire Wire Line
+	9000 2400 8700 2400
+$Comp
+L Device:R R?
+U 1 1 605391CB
+P 8450 2350
+F 0 "R?" H 8520 2396 50  0000 L CNN
+F 1 "R" H 8520 2305 50  0000 L CNN
+F 2 "" V 8380 2350 50  0001 C CNN
+F 3 "~" H 8450 2350 50  0001 C CNN
+	1    8450 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6053A0C8
+P 8200 2350
+F 0 "R?" H 8270 2396 50  0000 L CNN
+F 1 "R" H 8270 2305 50  0000 L CNN
+F 2 "" V 8130 2350 50  0001 C CNN
+F 3 "~" H 8200 2350 50  0001 C CNN
+	1    8200 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6053A51D
+P 7950 2350
+F 0 "R?" H 8020 2396 50  0000 L CNN
+F 1 "R" H 8020 2305 50  0000 L CNN
+F 2 "" V 7880 2350 50  0001 C CNN
+F 3 "~" H 7950 2350 50  0001 C CNN
+	1    7950 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6053A972
+P 7700 2350
+F 0 "R?" H 7770 2396 50  0000 L CNN
+F 1 "R" H 7770 2305 50  0000 L CNN
+F 2 "" V 7630 2350 50  0001 C CNN
+F 3 "~" H 7700 2350 50  0001 C CNN
+	1    7700 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8200 2800 9000 2800
+Wire Wire Line
+	7950 2900 9000 2900
+Wire Wire Line
+	7700 3000 9000 3000
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6053DDEC
+P 8450 2200
+F 0 "#PWR?" H 8450 2050 50  0001 C CNN
+F 1 "+3.3V" H 8465 2373 50  0000 C CNN
+F 2 "" H 8450 2200 50  0001 C CNN
+F 3 "" H 8450 2200 50  0001 C CNN
+	1    8450 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6053E647
+P 8200 2200
+F 0 "#PWR?" H 8200 2050 50  0001 C CNN
+F 1 "+3.3V" H 8215 2373 50  0000 C CNN
+F 2 "" H 8200 2200 50  0001 C CNN
+F 3 "" H 8200 2200 50  0001 C CNN
+	1    8200 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6053E9B7
+P 7950 2200
+F 0 "#PWR?" H 7950 2050 50  0001 C CNN
+F 1 "+3.3V" H 7965 2373 50  0000 C CNN
+F 2 "" H 7950 2200 50  0001 C CNN
+F 3 "" H 7950 2200 50  0001 C CNN
+	1    7950 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6053EBEF
+P 7700 2200
+F 0 "#PWR?" H 7700 2050 50  0001 C CNN
+F 1 "+3.3V" H 7715 2373 50  0000 C CNN
+F 2 "" H 7700 2200 50  0001 C CNN
+F 3 "" H 7700 2200 50  0001 C CNN
+	1    7700 2200
+	1    0    0    -1  
+$EndComp
+Entry Wire Line
+	7700 2750 7600 2650
+Entry Wire Line
+	7950 2750 7850 2650
+Entry Wire Line
+	8200 2750 8100 2650
+Entry Wire Line
+	8650 2500 8750 2600
+Wire Bus Line
+	8750 2600 8350 2600
+Wire Bus Line
+	8350 2600 8350 2650
+Text Label 7450 3100 1    50   ~ 0
+SPI
+Wire Bus Line
+	5050 4050 7450 4050
+Wire Bus Line
+	7450 2650 7450 4050
+Entry Wire Line
+	3350 2650 3450 2750
+NoConn ~ 3050 2750
+NoConn ~ 3050 2850
+NoConn ~ 3050 2350
+Wire Wire Line
+	3350 2450 3350 2500
+Wire Wire Line
+	3050 2450 3350 2450
+Wire Wire Line
+	3350 2500 5100 2500
+Wire Wire Line
+	5100 2500 5100 2300
+Wire Wire Line
+	5100 2300 5350 2300
+Wire Bus Line
+	7450 2650 8350 2650
+Text Label 4150 2500 0    50   ~ 0
+TimePulse
+Wire Wire Line
+	5850 3700 5550 3700
+Wire Wire Line
+	5950 3700 6150 3700
+$Comp
+L cockroach-cache:power_GND #PWR?
+U 1 1 6057905E
+P 6150 3700
+F 0 "#PWR?" H 6150 3450 50  0001 C CNN
+F 1 "power_GND" V 6155 3572 50  0000 R CNN
+F 2 "" H 6150 3700 50  0001 C CNN
+F 3 "" H 6150 3700 50  0001 C CNN
+	1    6150 3700
+	0    -1   -1   0   
+$EndComp
+Wire Bus Line
+	3450 2650 3450 3050
+Wire Wire Line
+	8450 2500 9000 2500
+Wire Wire Line
+	8200 2500 8200 2800
+Wire Wire Line
+	7950 2500 7950 2900
+Wire Wire Line
+	7700 2500 7700 3000
+Wire Bus Line
+	5050 3200 5050 4050
+Wire Bus Line
+	5100 1850 5100 2100
+Wire Wire Line
+	5350 3200 5150 3200
+Wire Wire Line
+	5200 2200 5350 2200
+$Comp
+L MCU_Module:Arduino_Nano_v2.x A1
+U 1 1 60451EC5
+P 5850 2700
+F 0 "A1" H 5850 1611 50  0000 C CNN
+F 1 "Arduino_Nano_v2.x" H 5850 1520 50  0000 C CNN
+F 2 "Module:Arduino_Nano" H 5850 2700 50  0001 C CIN
+F 3 "https://www.arduino.cc/en/uploads/Main/ArduinoNanoManual23.pdf" H 5850 2700 50  0001 C CNN
+	1    5850 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L cockroach-cache:power_GND #PWR?
+U 1 1 605799EA
+P 5550 3700
+F 0 "#PWR?" H 5550 3450 50  0001 C CNN
+F 1 "power_GND" V 5555 3573 50  0000 R CNN
+F 2 "" H 5550 3700 50  0001 C CNN
+F 3 "" H 5550 3700 50  0001 C CNN
+	1    5550 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L cockroach-cache:+3.3V #PWR?
+U 1 1 60579D21
+P 5950 1700
+F 0 "#PWR?" H 5950 1550 50  0001 C CNN
+F 1 "+3.3V" H 5965 1873 50  0000 C CNN
+F 2 "" H 5950 1700 50  0001 C CNN
+F 3 "" H 5950 1700 50  0001 C CNN
+	1    5950 1700
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
