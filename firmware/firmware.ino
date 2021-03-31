@@ -46,18 +46,18 @@ String filename;
 
 #define SD_cs_pin 10
 #define LED_pin LED_BUILTIN
+bool flash = false;
 
 void setup(){
     pinMode(LED_pin, OUTPUT);
-    if(!SD.begin(SD_cs_pin)){
+    while(!SD.begin(SD_cs_pin)){
         /* SD error, 5 Hz blink */
-        while(1){
-            digitalWrite(LED_pin, HIGH);
-            delay(100);
-            digitalWrite(LED_pin, LOW);
-            delay(100);
-        }
+        flash = !flash;
+        digitalWrite(LED_pin, flash);
+        delay(100);
     }
+    flash = false;
+    digitalWrite(LED_pin, flash);
 
     int index = 0;
     while(SD.exists(filenamestart + String(index) + filenameend)){
@@ -69,11 +69,11 @@ void setup(){
 
     while(!gps.readSensor()){
         /* gps not locked yet, 1 Hz blink */
-        digitalWrite(LED_pin, HIGH);
-        delay(500);
-        digitalWrite(LED_pin, LOW);
+        digitalWrite(LED_pin, flash);
         delay(500);
     }
+    flash = false;
+    digitalWrite(LED_pin, flash);
     
 }
 
