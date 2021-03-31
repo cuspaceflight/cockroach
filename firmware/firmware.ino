@@ -7,6 +7,10 @@
     * MOSI - pin 11
     * MISO - pin 12
     * SCK - pin 13
+    
+    Uses Bolder Flight Systems UBLOX by Brian Taylor
+    https://github.com/bolderflight/UBLOX
+    Available from Arduino Library Manager
 
     MAX-M8Q gps connected as follows:
     * TP - pin 5 (unused?)
@@ -36,15 +40,16 @@
 File datafile;
 UBLOX gps(Serial,9600);
 
-const String filenamestart = "data_";
-const String filenameend = ".csv";
+#define filenamestart "data_"
+#define filenameend ".csv"
 String filename;
 
-const int LED_pin = LED_BUILTIN;
+#define SD_cs_pin 10
+#define LED_pin LED_BUILTIN
 
 void setup(){
     pinMode(LED_pin, OUTPUT);
-    if(!SD.begin(10)){
+    if(!SD.begin(SD_cs_pin)){
         /* SD error, 5 Hz blink */
         while(1){
             digitalWrite(LED_pin, HIGH);
