@@ -7,20 +7,21 @@
     * MOSI - pin 11
     * MISO - pin 12
     * SCK - pin 13
-    
-    Uses Bolder Flight Systems UBLOX by Brian Taylor
-    https://github.com/bolderflight/UBLOX
-    Available from Arduino Library Manager
 
     MAX-M8Q gps connected as follows:
     * TP - pin 5
     * RX0 - pin 1 / TX
     * TX0 - pin 0 / RX (default Serial pins)
+    
+    Uses Bolder Flight Systems UBLOX by Brian Taylor
+    https://github.com/bolderflight/UBLOX
+    Available from Arduino Library Manager
 
     Summary:
-    * Upon startup a new file named data_<index>.csv is created, where <index> is the smallest integer not already in use
     * 5 Hz LED blink indicates an SD card error
     * 1 Hz blink indicates gps doesn't have a lock yet (lock should take ~30s)
+    * Once gps is locked, a new file is created in /data
+    * File name is <timestamp>.csv
     * Each time the gps has a new valid packet, it is read
     * Relevant data is extracted and written to the file in csv format:
         * UTC timestamp
@@ -40,9 +41,9 @@
 File datafile;
 UBLOX gps(Serial,9600);
 
-#define filenamestart "data_"
+#define filepath "data"
 #define filenameend ".csv"
-String filename;
+char filename[41];
 
 #define SD_cs_pin 10
 #define LED_pin LED_BUILTIN
@@ -59,12 +60,6 @@ void setup(){
     flash = false;
     digitalWrite(LED_pin, flash);
 
-    int index = 0;
-    while(SD.exists(filenamestart + String(index) + filenameend)){
-        index += 1;
-    }
-    filename = filenamestart + String(index) + filenameend;
-
     gps.begin();
 
     while(!gps.readSensor()){
@@ -75,7 +70,9 @@ void setup(){
     flash = false;
     digitalWrite(LED_pin, flash);
 
-
+    char utc_buffer[32];
+    utc_from_gps(gps, utc_buffer);
+    snprintf_P(filename, 41, PSTR("%s/%s%s"), filepath, utc_buffer, filenameend);
     datafile = SD.open(filename, FILE_WRITE);
 }
 
