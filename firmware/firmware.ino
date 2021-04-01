@@ -13,7 +13,7 @@
     Available from Arduino Library Manager
 
     MAX-M8Q gps connected as follows:
-    * TP - pin 5 (unused?)
+    * TP - pin 5
     * RX0 - pin 1 / TX
     * TX0 - pin 0 / RX (default Serial pins)
 
@@ -86,21 +86,41 @@ void loop(){
         char utc_buffer[32];
         utc_from_gps(gps, utc_buffer);
 
-        datafile.print(utc_buffer);
-        datafile.print(',');
-        datafile.print(gps.getLatitude_deg());
-        datafile.print(',');
-        datafile.print(gps.getLongitude_deg());
-        datafile.print(',');
-        datafile.print(gps.getMSLHeight_m());
-        datafile.print(',');
-        datafile.print(gps.getDownVelocity_ms());
-        datafile.print(',');
-        datafile.print(gps.getGroundSpeed_ms());
-        datafile.print(',');
-        datafile.println(gps.getMotionHeading_deg());
+        /* snprintf_P does not support floats/doubles directly in
+        this implementation, so they must be formatted to strings 
+        individually with dtostrf */
 
+        /* 6 d.p. of precision ~10cm i.e. 999.999999 */
+        char latit[11];
+        dtostrf(gps.getLatitude_deg(), 10, 6, latit);
+        char longit[11];
+        dtostrf(gps.getLongitude_deg(), 10, 6, longit);
+
+        /* 99999.9 */
+        char mslheight[8];
+        dtostrf(gps.getMSLHeight_m(), 7, 1, mslheight);
+
+        /* 999.9 */
+        char vertvelocity[6];
+        dtostrf(gps.getDownVelocity_ms(), 5, 1, vertvelocity);
         
+        char groundspeed[6];
+        dtostrf(gps.getGroundSpeed_ms(), 5, 1, groundspeed);
+
+        char groundtrack[6];
+        dtostrf(gps.getMotionHeading_deg(), 5, 1, groundtrack);
+
+        /* individual strings now formatted to the csv line */
+        char line_buffer[80];
+        snprintf_P(line_buffer, 80, 
+        PSTR("%s,%s,%s,%s,%s,%s,%s"),
+        utc_buffer, latit, longit, mslheight,
+        vertvelocity, groundspeed, groundtrack);
+
+        /* dtostrf pads with spaces, we want leading zeros */
+        replace_spaces(line_buffer);
+
+        datafile.println(line_buffer);
         datafile.flush();
     }
 }
@@ -112,4 +132,10 @@ void utc_from_gps(UBLOX gps, char* outStr){
     gps.getYear(), gps.getMonth(), gps.getDay(),
     gps.getHour(), gps.getMin(), gps.getSec(),
     gps.getNanoSec());
+}
+
+void replace_spaces(char* input){
+  for(int i = 0; i < sizeof(input); i++){
+    if(input[i] == ' ') input[i] = '0';  
+  }
 }
