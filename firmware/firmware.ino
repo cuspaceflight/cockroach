@@ -19,17 +19,17 @@
 
     Summary:
     * Upon startup a new file named data_<index>.csv is created, where <index> is the smallest integer not already in use
-    * 5 Hz LED blink indicates an SD card error, 1 Hz blink indicates gps doesn't have a lock yet (lock should take ~30s)
+    * 5 Hz LED blink indicates an SD card error
+    * 1 Hz blink indicates gps doesn't have a lock yet (lock should take ~30s)
     * Each time the gps has a new valid packet, it is read
     * Relevant data is extracted and written to the file in csv format:
+        * UTC timestamp
         * lat, long - degrees
         * mean altitude above sea level - m
         * vertical speed - m/s
         * ground speed - m/s
         * ground track - degrees
-        * gps time of week - ms
-        * time since startup - ms
-    * Opening and closing the file each iteration should protect the data in the event of an unplanned kinetic disassembly
+    * SD write buffer is flushed each iteration to protect data
  
  */
 
@@ -74,14 +74,20 @@ void setup(){
     }
     flash = false;
     digitalWrite(LED_pin, flash);
-    
+
+
+    datafile = SD.open(filename, FILE_WRITE);
 }
 
 
 void loop(){
     if (gps.readSensor()){
-        datafile = SD.open(filename, FILE_WRITE);
+        
+        char utc_buffer[32];
+        utc_from_gps(gps, utc_buffer);
 
+        datafile.print(utc_buffer);
+        datafile.print(',');
         datafile.print(gps.getLatitude_deg());
         datafile.print(',');
         datafile.print(gps.getLongitude_deg());
@@ -92,12 +98,18 @@ void loop(){
         datafile.print(',');
         datafile.print(gps.getGroundSpeed_ms());
         datafile.print(',');
-        datafile.print(gps.getMotionHeading_deg());
-        datafile.print(',');
-        datafile.print(gps.getTow_ms());
-        datafile.print(',');
-        datafile.println(millis());
+        datafile.println(gps.getMotionHeading_deg());
+
         
-        datafile.close();
+        datafile.flush();
     }
+}
+
+void utc_from_gps(UBLOX gps, char* outStr){
+    /* yyyy-mm-dd--hh-mm-ss--nnnnnnnnn */
+    snprintf_P(outStr, 32, 
+    PSTR("%u-%02u-%02u--%02u-%02u-%02u--%09ld"), 
+    gps.getYear(), gps.getMonth(), gps.getDay(),
+    gps.getHour(), gps.getMin(), gps.getSec(),
+    gps.getNanoSec());
 }
