@@ -109,10 +109,9 @@ void loop(){
 
         /* individual strings now formatted to the csv line */
         char line_buffer[80];
-        snprintf_P(line_buffer, 80, 
-        PSTR("%s,%s,%s,%s,%s,%s,%s"),
-        utc_buffer, latit, longit, mslheight,
-        vertvelocity, groundspeed, groundtrack);
+        snprintf_P(line_buffer, 80, PSTR("%s,%s,%s,%s,%s,%s,%s"),
+                   utc_buffer, latit, longit, mslheight,
+                   vertvelocity, groundspeed, groundtrack);
 
         /* dtostrf pads with spaces, we want leading zeros */
         replace_spaces(line_buffer);
