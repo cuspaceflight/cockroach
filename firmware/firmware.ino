@@ -131,7 +131,7 @@ void utc_from_gps(UBLOX gps, char* outStr){
 void replace_spaces(char* input){
   uint8_t i = 0;
   while (input[i] != '\0'){
-    if(input[i] == ' ') input[i] = '0';
+    if (input[i] == ' ') input[i] = '0';
     i++;  
   }
 }
