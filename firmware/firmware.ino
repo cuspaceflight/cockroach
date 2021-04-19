@@ -124,11 +124,9 @@ void loop(){
 
 void utc_from_gps(UBLOX gps, char* outStr){
     /* yyyy-mm-dd--hh-mm-ss--nnnnnnnnn */
-    snprintf_P(outStr, 32, 
-    PSTR("%u-%02u-%02u--%02u-%02u-%02u--%09ld"), 
-    gps.getYear(), gps.getMonth(), gps.getDay(),
-    gps.getHour(), gps.getMin(), gps.getSec(),
-    gps.getNanoSec());
+    snprintf_P(outStr, 32, PSTR("%u-%02u-%02u--%02u-%02u-%02u--%09ld"),
+               gps.getYear(), gps.getMonth(), gps.getDay(), gps.getHour(),
+               gps.getMin(), gps.getSec(), gps.getNanoSec());    
 }
 
 void replace_spaces(char* input){
