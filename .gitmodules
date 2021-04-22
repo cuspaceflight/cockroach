@@ -1,0 +1,3 @@
+[submodule "cusf-kicad"]
+	path = cusf-kicad
+	url = https://github.com/cuspaceflight/cusf-kicad

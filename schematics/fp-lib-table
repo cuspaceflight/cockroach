@@ -1,3 +1,4 @@
 (fp_lib_table
   (lib (name cusf)(type KiCad)(uri D:/nikhi/OneDrive/Documents/GitHub/cusf-kicad/cusf.pretty)(options "")(descr ""))
+  (lib (name ul_CD74HC4050M)(type KiCad)(uri C:/Users/nikhi/Downloads/ul_CD74HC4050M)(options "")(descr ""))
 )
