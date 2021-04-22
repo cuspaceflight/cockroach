@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name cockroach-cache)(type Legacy)(uri ${KIPRJMOD}/cockroach-cache.lib)(options "")(descr ""))
+  (lib (name cusf-kicad)(type Legacy)(uri D:/nikhi/OneDrive/Documents/GitHub/cusf-kicad/cusf-kicad.lib)(options "")(descr ""))
+)
