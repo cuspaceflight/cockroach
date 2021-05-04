@@ -1,5 +1,6 @@
 EESchema Schematic File Version 4
-EELAYER 30 0
+LIBS:cockroach-cache
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -13,20 +14,9 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L Connector:Conn_01x08_Male J1
-U 1 1 60537954
-P 2850 2450
-F 0 "J1" H 2958 2931 50  0000 C CNN
-F 1 "Conn_01x08_Male" H 2958 2840 50  0000 C CNN
-F 2 "" H 2850 2450 50  0001 C CNN
-F 3 "~" H 2850 2450 50  0001 C CNN
-	1    2850 2450
-	1    0    0    -1  
-$EndComp
-Text Label 3050 2850 0    50   ~ 0
+Text Label 2850 2850 0    50   ~ 0
 SDA
-Text Label 3050 2750 0    50   ~ 0
+Text Label 2850 2750 0    50   ~ 0
 SCL
 Text Label 3050 2650 0    50   ~ 0
 TX0
@@ -39,20 +29,7 @@ Text Label 3050 2150 0    50   ~ 0
 Text Label 3050 2250 0    50   ~ 0
 GND
 $Comp
-L power:+3V3 #PWR01
-U 1 1 6054D03D
-P 3450 2150
-F 0 "#PWR01" H 3450 2000 50  0001 C CNN
-F 1 "+3V3" H 3465 2323 50  0000 C CNN
-F 2 "" H 3450 2150 50  0001 C CNN
-F 3 "" H 3450 2150 50  0001 C CNN
-	1    3450 2150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3050 2150 3450 2150
-$Comp
-L power:GND #PWR02
+L cusf-kicad:GND #PWR02
 U 1 1 6054DD2D
 P 3450 2250
 F 0 "#PWR02" H 3450 2000 50  0001 C CNN
@@ -62,8 +39,6 @@ F 3 "" H 3450 2250 50  0001 C CNN
 	1    3450 2250
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3050 2250 3450 2250
 Text Label 5200 2100 0    50   ~ 0
 RX0
 Text Label 5200 2200 0    50   ~ 0
@@ -104,13 +79,10 @@ NoConn ~ 9000 2600
 NoConn ~ 9000 2700
 Wire Wire Line
 	9000 2400 8700 2400
-NoConn ~ 3050 2750
-NoConn ~ 3050 2850
-NoConn ~ 3050 2350
+NoConn ~ 2850 2750
+NoConn ~ 2850 2850
 Wire Wire Line
 	3350 2450 3350 2500
-Wire Wire Line
-	3050 2450 3350 2450
 Wire Wire Line
 	3350 2500 5100 2500
 Wire Wire Line
@@ -123,10 +95,8 @@ Wire Wire Line
 	5850 3700 5550 3700
 Wire Wire Line
 	5350 3200 5150 3200
-Wire Wire Line
-	3050 2550 4000 2550
 $Comp
-L MCU_Module:Arduino_Nano_v2.x A1
+L cockroach-rescue:Arduino_Nano_v2.x-MCU_Module A1
 U 1 1 60451EC5
 P 5850 2700
 F 0 "A1" H 5850 1611 50  0000 C CNN
@@ -326,7 +296,7 @@ F 3 "" H 8700 2400 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L cusf-kicad:CP C1
+L cusf-kicad:C C1
 U 1 1 60813A2C
 P 4100 4900
 F 0 "C1" V 4196 4842 50  0000 R CNN
@@ -337,7 +307,7 @@ F 3 "" H 4100 4900 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L cusf-kicad:CP C2
+L cusf-kicad:C C2
 U 1 1 608146EF
 P 4450 4900
 F 0 "C2" V 4546 4842 50  0000 R CNN
@@ -408,8 +378,6 @@ Wire Wire Line
 Wire Wire Line
 	4900 2100 4900 2650
 Wire Wire Line
-	3050 2650 4900 2650
-Wire Wire Line
 	4000 2550 4000 4350
 Wire Wire Line
 	4000 4350 4900 4350
@@ -427,14 +395,47 @@ Wire Wire Line
 	4950 5350 4950 2200
 Wire Wire Line
 	4950 2200 5350 2200
+Text Label 6150 4700 0    50   ~ 0
+TX0
+Text Label 5200 5000 0    50   ~ 0
+RX0
+$Comp
+L cusf-kicad:3v3 #PWR?
+U 1 1 6091DF98
+P 3450 2150
+F 0 "#PWR?" H 3450 2260 50  0001 L CNN
+F 1 "3v3" H 3450 2274 50  0000 C CNN
+F 2 "" H 3450 2150 50  0001 C CNN
+F 3 "" H 3450 2150 50  0001 C CNN
+	1    3450 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L cusf-kicad:CONN_01x08 J?
+U 1 1 6091E2D2
+P 2750 2150
+F 0 "J?" H 2781 2365 50  0000 C CNN
+F 1 "CONN_01x08" H 2781 2274 50  0000 C CNN
+F 2 "" H 2750 2150 50  0001 C CNN
+F 3 "" H 2750 2150 50  0001 C CNN
+	1    2750 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2850 2150 3450 2150
+Wire Wire Line
+	2850 2250 3450 2250
+Wire Wire Line
+	2850 2450 3350 2450
+Wire Wire Line
+	2850 2550 4000 2550
+Wire Wire Line
+	2850 2650 4900 2650
+NoConn ~ 2850 2350
 Wire Bus Line
 	8400 2600 8400 4300
 Wire Bus Line
 	6450 4300 6450 4800
 Wire Bus Line
 	5050 3200 5050 4900
-Text Label 6150 4700 0    50   ~ 0
-TX0
-Text Label 5200 5000 0    50   ~ 0
-RX0
 $EndSCHEMATC
